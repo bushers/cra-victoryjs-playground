@@ -1,49 +1,18 @@
 import * as React from 'react';
-import { 
-    VictoryPie, 
-    VictoryBar, 
+import {
     VictoryChart,
     VictoryAxis,
-    VictoryTheme,
-    VictoryStack
-} from "victory";
+    VictoryStack,
+    VictoryBar,
+    VictoryTheme
+} from 'victory';
 
-const data2012 = [
-    {quarter: 1, earnings: 13000},
-    {quarter: 2, earnings: 16500},
-    {quarter: 3, earnings: 14250},
-    {quarter: 4, earnings: 19000}
-  ];
-  
-  const data2013 = [
-    {quarter: 1, earnings: 15000},
-    {quarter: 2, earnings: 12500},
-    {quarter: 3, earnings: 19500},
-    {quarter: 4, earnings: 13000}
-  ];
-  
-  const data2014 = [
-    {quarter: 1, earnings: 11500},
-    {quarter: 2, earnings: 13250},
-    {quarter: 3, earnings: 20000},
-    {quarter: 4, earnings: 15500}
-  ];
-  
-  const data2015 = [
-    {quarter: 1, earnings: 18000},
-    {quarter: 2, earnings: 13250},
-    {quarter: 3, earnings: 15000},
-    {quarter: 4, earnings: 12000}
-  ];
+import { dataSets } from './data';
 
-  const dataSets = [data2012, data2013, data2014, data2015];
-  
-
-class Victory extends React.Component<{}> {
+class BarChart extends React.Component<{}> {
     render() {
         return (
-            <div className="victory">
-                {/* <VictoryPie /> */}
+            <div className="bar-chart">
                 <VictoryChart
                     theme={VictoryTheme.material}
                     domainPadding={20}
@@ -59,11 +28,16 @@ class Victory extends React.Component<{}> {
                     <VictoryStack
                         colorScale="blue"
                     >
-                        {dataSets.map(set => (
+                        {dataSets.map((set, i) => (
                             <VictoryBar 
+                                key={`bar_${i}`}
                                 data={set}
                                 x="quarter"
                                 y="earnings"
+                                animate={{ 
+                                    duration: 2000,
+                                    onLoad: { duration: 1000 }
+                                }}
                             />
                         ))}
                     </VictoryStack>
@@ -73,4 +47,4 @@ class Victory extends React.Component<{}> {
     }
 }
 
-export default Victory;
+export default BarChart;
