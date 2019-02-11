@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Content from './components/Content';
-import Victory from './components/Victory';
+import Victory from './components/Victory/Victory';
 
 class App extends Component {
   render() {
